@@ -41,7 +41,7 @@ class RepositoryDownloader:
             repo_name = repo_url.split("/")[-1]
 
             # Create download URL
-            download_url = f"{repo_url}/archieve/main.zip"
+            download_url = f"{repo_url}/archive/main.zip"
 
             print(f"Downloading Github repository: {download_url}")
 
@@ -67,7 +67,7 @@ class RepositoryDownloader:
             repo_name = repo_url.split("/")[-1]
 
             # Create download URL
-            download_url = f"{repo_url}/-/archieve/main/main.zip"
+            download_url = f"{repo_url}/-/archive/main/main.zip"
 
             print(f"Downloading Gitlab repository: {download_url}")
 
