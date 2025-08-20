@@ -67,11 +67,14 @@ class AIAnalyzer:
             return "No violations found."
 
         # Group violations by severity
-        high_violations = [v for v in violations if v.severity == "high"]
-        medium_violations = [v for v in violations if v.severity == "medium"]
-        low_violations = [v for v in violations if v.severity == "low"]
+        # Group violations by severity
+        critical_violations = [v for v in violations if v.severity == "critical"]
+        high_violations     = [v for v in violations if v.severity == "high"]
+        medium_violations   = [v for v in violations if v.severity == "medium"]
+        low_violations      = [v for v in violations if v.severity == "low"]
 
-        summary = f"Found {len(violations)} compliance violations:\n"
+        summary  = f"Found {len(violations)} compliance violations:\n"
+        summary += f"- Critical severity: {len(critical_violations)}\n"
         summary += f"- High severity: {len(high_violations)}\n"
         summary += f"- Medium severity: {len(medium_violations)}\n"
         summary += f"- Low severity: {len(low_violations)}\n\n"
