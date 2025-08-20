@@ -1,0 +1,110 @@
+[
+  {
+    "id": "R001",
+    "title": "Secrets Detection",
+    "description": "Detect committed secrets like API keys, private keys, or .env files.",
+    "file_patterns": [".env", ".pem", ".p12", "id_rsa", "id_dsa"],
+    "regex_patterns": [
+      "(?i)(aws|gcp|stripe|github).*?(key|secret).*?['\"][0-9a-zA-Z\\-_]{16,}['\"]"
+    ],
+    "severity": "high",
+    "compliance_mapping": ["SOC2 CC6.1", "OWASP A02"],
+    "fix_suggestion": "Remove secrets from repo, rotate keys, and use a secret manager."
+  },
+  {
+    "id": "R002",
+    "title": "Dependency Risks",
+    "description": "Check for outdated or vulnerable dependencies in package files.",
+    "file_patterns": ["package.json", "requirements.txt"],
+    "regex_patterns": [],
+    "severity": "high",
+    "compliance_mapping": ["SOC2 CC7.1", "OWASP A06"],
+    "fix_suggestion": "Update dependencies and run security audit tools (npm audit, pip-audit)."
+  },
+  {
+    "id": "R003",
+    "title": "Dockerfile Security",
+    "description": "Detect insecure Docker images or root usage.",
+    "file_patterns": ["Dockerfile"],
+    "regex_patterns": ["FROM .*:latest", "USER root"],
+    "severity": "high",
+    "compliance_mapping": ["CIS Docker 1.2"],
+    "fix_suggestion": "Pin Docker images to specific versions and avoid running as root."
+  },
+  {
+    "id": "R004",
+    "title": "CI/CD Security Steps",
+    "description": "Detect missing security scans in CI/CD workflows.",
+    "file_patterns": [".github/workflows/*.yml", "gitlab-ci.yml"],
+    "regex_patterns": [],
+    "severity": "medium",
+    "compliance_mapping": ["SOC2 CC7.2", "OWASP A05"],
+    "fix_suggestion": "Add security scanning jobs (npm audit, Bandit, Snyk) in pipelines."
+  },
+  {
+    "id": "R005",
+    "title": "Public Config Files",
+    "description": "Detect sensitive config files committed to repo.",
+    "file_patterns": ["firebase.json", "serviceAccountKey.json", "config.yaml"],
+    "regex_patterns": [],
+    "severity": "high",
+    "compliance_mapping": ["SOC2 CC6.1", "OWASP A02"],
+    "fix_suggestion": "Do not commit configs with credentials. Use environment variables or secrets manager."
+  },
+  {
+    "id": "R006",
+    "title": "Logging PII",
+    "description": "Detect logs of sensitive user data.",
+    "file_patterns": ["*.js", "*.ts", "*.py"],
+    "regex_patterns": [
+      "console\\.log\\((.*password.*|.*ssn.*|.*credit.*)\\)",
+      "print\\((.*password.*|.*ssn.*|.*credit.*)\\)"
+    ],
+    "severity": "high",
+    "compliance_mapping": ["SOC2 CC6.8", "OWASP A02"],
+    "fix_suggestion": "Do not log sensitive data. Mask or redact before logging."
+  },
+  {
+    "id": "R007",
+    "title": "Weak Authentication Defaults",
+    "description": "Detect hardcoded weak credentials or secrets.",
+    "file_patterns": ["*.env", "*.json", "*.yaml", "*.js", "*.ts"],
+    "regex_patterns": [
+      "admin:admin",
+      "jwt.*secret.*[=:]\\s*['\"]?secret['\"]?"
+    ],
+    "severity": "high",
+    "compliance_mapping": ["SOC2 CC6.2", "OWASP A07"],
+    "fix_suggestion": "Avoid hardcoding weak credentials. Use strong, rotated secrets."
+  },
+  {
+    "id": "R008",
+    "title": "Insecure HTTP Usage",
+    "description": "Detect plain HTTP URLs instead of HTTPS.",
+    "file_patterns": ["*.js", "*.ts", "*.py", "*.yaml", "*.json"],
+    "regex_patterns": ["http://[^\\s'\"]+"],
+    "severity": "medium",
+    "compliance_mapping": ["SOC2 CC6.6", "OWASP A05"],
+    "fix_suggestion": "Use HTTPS for all external services."
+  },
+  {
+    "id": "R009",
+    "title": "Missing Security Files",
+    "description": "Check if repo lacks SECURITY.md or .gitignore rules for secrets.",
+    "file_patterns": ["SECURITY.md", "CODEOWNERS", ".gitignore"],
+    "regex_patterns": [],
+    "severity": "low",
+    "compliance_mapping": ["SOC2 Governance"],
+    "fix_suggestion": "Add SECURITY.md and ensure .gitignore excludes sensitive files like .env."
+  },
+  {
+    "id": "R010",
+    "title": "License & Compliance Hygiene",
+    "description": "Check for missing LICENSE and README files.",
+    "file_patterns": ["LICENSE", "README.md"],
+    "regex_patterns": [],
+    "severity": "low",
+    "compliance_mapping": ["SOC2 CC1.2"],
+    "fix_suggestion": "Add LICENSE and README for compliance transparency."
+  }
+]
