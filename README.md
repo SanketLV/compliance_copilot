@@ -4,18 +4,17 @@ A comprehensive, AI-powered tool for checking repository compliance against secu
 
 ## 📋 Table of Contents
 
-- [Features](#-features)
-- [Project Structure](#-project-structure)
-- [Installation](#-installation)
-- [Quick Start](#-quick-start)
-- [Usage](#-usage)
-- [Configuration](#-configuration)
-- [Compliance Rules](#-compliance-rules)
-- [API Reference](#-api-reference)
-- [Development](#-development)
-- [Troubleshooting](#-troubleshooting)
-- [Contributing](#-contributing)
-
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Compliance Rules](#compliance-rules)
+- [API Reference](#api-reference)
+- [Development](#development)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
 ## ✨ Features
 
 - 🔍 **Automated Repository Scanning**: Downloads and analyzes repositories from GitHub/GitLab
